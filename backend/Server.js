@@ -4,7 +4,10 @@ const cors = require("cors"); // CORS middleware to allow requests from differen
 require("dotenv").config(); // dotenv is used to load environment variables from a .env file.
 
 const teamRoutes = require('./routes/TeamRoutes'); //Added team routes
-const roleRoutes = require('./routes/RoleRoutes')
+const roleRoutes = require('./routes/RoleRoutes'); 
+const employeeRoutes = require('./routes/EmployeeRoutes');
+const UserRoutes = require('./routes/UserRoutes');
+const LeaveRequestRoutes = require('./routes/LeaveRequestRoutes');
 
 // Create an instance of Express
 const app = express();
@@ -20,7 +23,9 @@ app.use(cors()); // Middleware to handle Cross-Origin Resource Sharing (CORS).
 
 app.use('/api', teamRoutes); // Use team routes
 app.use('/api', roleRoutes); // use role routes
-
+app.use('/api', employeeRoutes);
+app.use('/api', UserRoutes);
+app.use('/api', LeaveRequestRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)

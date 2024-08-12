@@ -10,7 +10,7 @@ const leaveRequestSchema = new mongoose.Schema({
     },
     empId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Employee,
+        ref: 'Employee',
         required: true,
     },
     fromDate: {

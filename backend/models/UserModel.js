@@ -5,7 +5,7 @@ const { GENDER } = require('../constants');
 const userSchema = new mongoose.Schema({
   empId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: Employee,
+    ref: 'Employee',
   },
   email: {
     type: String,
