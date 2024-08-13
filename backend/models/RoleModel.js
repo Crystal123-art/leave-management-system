@@ -11,6 +11,7 @@ const roleSchema = new mongoose.Schema({
     roleName: {
         type: String,
         enum: Object.values(ROLES),
+        required: true,
     },
 });
 

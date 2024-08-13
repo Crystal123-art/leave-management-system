@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
   empId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee',
+    unique: true,
+    required: true,
   },
   email: {
     type: String,
@@ -29,6 +31,7 @@ const userSchema = new mongoose.Schema({
   roleId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Role',
+    required: true,
   },
 });
 
