@@ -1,5 +1,6 @@
 const Team = require('../models/TeamModel');
 
+//CREATE team
 const createTeam = async (req, res) => {
   try {
     const { teamId, teamName, lineManager, functionalManager } = req.body;
@@ -19,7 +20,7 @@ const createTeam = async (req, res) => {
   }
 };
 
-// Get all teams
+// GET all teams
 const getAllTeams = async (req, res) => {
   try {
     const teams = await Team.find();
@@ -29,7 +30,7 @@ const getAllTeams = async (req, res) => {
   }
 };
 
-// Get team by Id
+// GET team by Id
 const getTeamById = async (req, res) => {
   try {
     const team = await Team.findById(req.params.id);

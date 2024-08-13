@@ -1,5 +1,6 @@
 const User = require('../models/UserModel');
 
+//CREATE user
 const createUser = async (req, res) => {
     try {
         const { empId, email, password, location, gender, roleId } = req.body;
@@ -21,7 +22,7 @@ const createUser = async (req, res) => {
     }
 };
 
-// Get all users
+// GET all users
 const getAllUsers = async (req, res) => {
     try {
       const users = await User.find().populate('empId roleId');
@@ -31,7 +32,7 @@ const getAllUsers = async (req, res) => {
     }
   };
   
-  // Get user by Id
+  // GET user by Id
   const getUserById = async (req, res) => {
     try {
       const user = await User.findById(req.params.id).populate('empId roleId');

@@ -1,5 +1,6 @@
 const Role = require('../models/RoleModel');
 
+//CREATE role
 const createRole = async (req, res) => {
   try {
     const { roleId, roleName } = req.body;
@@ -17,7 +18,7 @@ const createRole = async (req, res) => {
   }
 };
 
-// Get all roles
+// GET all roles
 const getAllRoles = async (req, res) => {
   try {
     const roles = await Role.find();
@@ -27,7 +28,7 @@ const getAllRoles = async (req, res) => {
   }
 };
 
-// Get a single role by ID
+// GET role by ID
 const getRoleById = async (req, res) => {
   try {
     const role = await Role.findById(req.params.id);

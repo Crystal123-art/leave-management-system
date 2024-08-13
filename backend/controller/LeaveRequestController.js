@@ -1,5 +1,6 @@
 const LeaveRequest = require('../models/LeaveRequestModel');
 
+//CREATE request
 const createLeaveRequest = async (req, res) => {
     try {
         const { reqId, empId, fromDate, toDate, status, reason } = req.body;
@@ -21,7 +22,7 @@ const createLeaveRequest = async (req, res) => {
     }
 };
 
-// Get all requests
+// GET all requests
 const getAllLeaveRequests = async (req, res) => {
     try {
       const leaveRequests = await LeaveRequest.find().populate('empId');
@@ -31,7 +32,7 @@ const getAllLeaveRequests = async (req, res) => {
     }
   };
   
-  // Get request by ID
+  // GET request by ID
   const getLeaveRequestById = async (req, res) => {
     try {
       const leaveRequest = await LeaveRequest.findById(req.params.id).populate('empId');
