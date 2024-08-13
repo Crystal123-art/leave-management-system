@@ -19,4 +19,28 @@ const createTeam = async (req, res) => {
   }
 };
 
-module.exports = { createTeam };
+// Get all teams
+const getAllTeams = async (req, res) => {
+  try {
+    const teams = await Team.find();
+    res.status(200).json(teams);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Get team by Id
+const getTeamById = async (req, res) => {
+  try {
+    const team = await Team.findById(req.params.id);
+    if (!team) {
+      return res.status(404).json({ message: 'Team not found' });
+    }
+    res.status(200).json(team);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+module.exports = { createTeam, getAllTeams, getTeamById };

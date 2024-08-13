@@ -21,4 +21,27 @@ const createLeaveRequest = async (req, res) => {
     }
 };
 
-module.exports = { createLeaveRequest };
+// Get all requests
+const getAllLeaveRequests = async (req, res) => {
+    try {
+      const leaveRequests = await LeaveRequest.find().populate('empId');
+      res.status(200).json(leaveRequests);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  
+  // Get request by ID
+  const getLeaveRequestById = async (req, res) => {
+    try {
+      const leaveRequest = await LeaveRequest.findById(req.params.id).populate('empId');
+      if (!leaveRequest) {
+        return res.status(404).json({ message: 'Leave request not found' });
+      }
+      res.status(200).json(leaveRequest);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+
+module.exports = { createLeaveRequest, getAllLeaveRequests, getLeaveRequestById };

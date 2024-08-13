@@ -21,4 +21,27 @@ const createUser = async (req, res) => {
     }
 };
 
-module.exports = { createUser };
+// Get all users
+const getAllUsers = async (req, res) => {
+    try {
+      const users = await User.find().populate('empId roleId');
+      res.status(200).json(users);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  
+  // Get user by Id
+  const getUserById = async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id).populate('empId roleId');
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+
+module.exports = { createUser, getAllUsers, getUserById };
