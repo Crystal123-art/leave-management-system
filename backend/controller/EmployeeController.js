@@ -65,4 +65,21 @@ const getEmployeeById = async (req, res) => {
     }
   };
 
-module.exports = { createEmployee, getAllEmployees, getEmployeeById, updateEmployee};
+  //DELETE employee
+  const deleteEmployee = async (req, res) => {
+    try {
+      const employeeId = req.params.id; // Get the employee ID from the URL parameters
+  
+      const deletedEmployee = await Employee.findByIdAndDelete(employeeId);
+  
+      if (!deletedEmployee) {
+        return res.status(404).json({ message: 'Employee not found' });
+      }
+  
+      res.status(200).json({ message: 'Employee deleted successfully', deletedEmployee });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+
+module.exports = { createEmployee, getAllEmployees, getEmployeeById, updateEmployee, deleteEmployee};

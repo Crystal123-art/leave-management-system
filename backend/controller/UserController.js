@@ -45,6 +45,7 @@ const getAllUsers = async (req, res) => {
     }
   };
 
+  //UPDATE user
   const updateUser = async (req, res) => {
     try {
       const userId = req.params.id; // Get the user ID from the URL parameters
@@ -62,4 +63,21 @@ const getAllUsers = async (req, res) => {
     }
   };
 
-module.exports = { createUser, getAllUsers, getUserById, updateUser };
+  //DELETE user
+  const deleteUser = async (req, res) => {
+    try {
+      const UserId = req.params.id; // Get the user ID from the URL parameters
+  
+      const deletedUser = await User.findByIdAndDelete(UserId);
+  
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'User deleted successfully', deletedUser });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+
+module.exports = { createUser, getAllUsers, getUserById, updateUser, deleteUser };

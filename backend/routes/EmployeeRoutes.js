@@ -2,7 +2,8 @@ const { Router } = require("express");
 const { createEmployee,
         getAllEmployees,
         getEmployeeById,
-        updateEmployee } = require("../controller/EmployeeController");
+        updateEmployee,
+        deleteEmployee } = require("../controller/EmployeeController");
 
 const router = Router();
 
@@ -18,8 +19,7 @@ router.put('/update-employee/:empId', updateEmployee);
 
 
 //DELETE
-
-
+router.delete('/employee/:id', deleteEmployee);
 
 
 module.exports = router;

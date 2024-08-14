@@ -41,5 +41,40 @@ const getRoleById = async (req, res) => {
   }
 };
 
-module.exports = { createRole, getAllRoles, getRoleById };
+//UPDATE role
+const updateRole = async (req, res) => {
+  try {
+    const roleId = req.params.id; // Get the role ID from the URL parameters
+    const updatedData = req.body; // Get the updated data from the request body
+
+    const updatedRole = await Role.findByIdAndUpdate(roleId, updatedData, { new: true });
+
+    if (!updatedRole) {
+      return res.status(404).json({ message: 'Role not found' });
+    }
+
+    res.status(200).json({ message: 'Role updated successfully', updatedRole });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+//DELETE role
+const deleteRole = async (req, res) => {
+  try {
+    const RoleId = req.params.id; // Get the employee ID from the URL parameters
+
+    const deletedRole = await Role.findByIdAndDelete(RoleId);
+
+    if (!deletedRole) {
+      return res.status(404).json({ message: 'Role not found' });
+    }
+
+    res.status(200).json({ message: 'Role deleted successfully', deletedRole });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { createRole, getAllRoles, getRoleById, updateRole, deleteRole };
 
